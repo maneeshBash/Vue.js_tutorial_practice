@@ -1,8 +1,7 @@
 <template>
-<h1>Hello from HomePage</h1>
-<div v-html="text"></div>
-<div v-html="tag1"></div>
-<div v-html="tag2" ></div>
+<h1>Dynamic class binding</h1>
+<h2 :class="applyStyles">Homepage</h2>
+<button v-on:click="colorfull=!colorfull">toggleClass</button>
 </template>
 
 <script>
@@ -10,12 +9,34 @@ export default {
     name: 'HomePage',
     data() {
         return {
-            text: "Hello from Vue.js",
-            tag1: '<h1>h1 tag binding',
-            tag2: '<h2>h1 tag binding'
-
+            colorfull: true
+        }
+    },
+    computed:{
+        applyStyles(){  //multiple dynamic classes add in one function under computed: property
+            return{
+                green:this.colorfull,
+                err:true,
+                other:false
+            }
         }
     }
 
 };
 </script>
+
+<style scoped>
+.green {
+    background-color: green;
+    width: 200px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+.err{
+color: red;
+}
+.other{
+font-size: 50px;
+}
+</style>
