@@ -1,28 +1,43 @@
 <template>
 <h1>Hello from HomePage</h1>
-<Child name="Manish" :user="user" :getData="getData" />
+<ul>
+    <li v-for="item in users" :key="item.name">
+        <UserComp :data="item" :getData="getData" />
+
+    </li>
+</ul>
 </template>
 
 <script>
-import Child from './ChildPage.vue'
+import UserComp from './UserComp.vue'
 export default {
     name: 'HomePage',
     components: {
-        Child,
+        UserComp,
     },
-    data(){
-        return{
-            user:{
-                name:"peter",
-                email:"peter@gmail.com"
-            }
+    methods: {
+        getData(name, email) {
+            alert(`Name: ${name}, Email:${email}`)
         }
     },
-    methods:{
-        getData(){
-            console.warn("method called");
-            alert("function called")
+    data() {
+        return {
+            users: [{
+                    name: "peter",
+                    email: "peter@gmail.com"
+                },
+                {
+                    name: "Joe",
+                    email: "Joe@gmail.com"
+                },
+                {
+                    name: "Jane",
+                    email: "Jane@gmail.com"
+                }
+
+            ]
         }
     }
+
 };
 </script>
