@@ -1,24 +1,19 @@
 <template>
-<h1>Dynamic class binding</h1>
-<h2 :class="applyStyles">Homepage</h2>
-<button v-on:click="colorfull=!colorfull">toggleClass</button>
+<h1>Ref in vue.js</h1>
+<input type="text" ref="input" placeholder="type here!">
+<button v-on:click="getData">Click me!</button>
 </template>
 
 <script>
 export default {
     name: 'HomePage',
-    data() {
-        return {
-            colorfull: true
-        }
-    },
-    computed:{
-        applyStyles(){  //multiple dynamic classes add in one function under computed: property
-            return{
-                green:this.colorfull,
-                err:true,
-                other:false
-            }
+    methods:{
+        getData(){
+            this.$refs.input.focus();
+           
+            let val = this.$refs.input.value;
+            console.log(val)
+            this.$refs.input.style.color="green"
         }
     }
 
@@ -26,17 +21,5 @@ export default {
 </script>
 
 <style scoped>
-.green {
-    background-color: green;
-    width: 200px;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-}
-.err{
-color: red;
-}
-.other{
-font-size: 50px;
-}
+
 </style>
