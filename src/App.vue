@@ -1,7 +1,12 @@
 <template>
 <img alt="Vue logo" src="./assets/logo.png">
-<br/>
-<input type="text" ref="myElement" />
+<br />
+<div>
+    <button @click="toggle">Toggle message</button>
+    <transition name="fade">
+        <p v-if="show">Hello World!</p>
+    </transition>
+</div>
 </template>
 
 <script>
@@ -9,27 +14,22 @@ export default {
     name: 'App',
     data() {
         return {
-            message: '',
+            show: true
+        };
+    },
+    methods: {
+        toggle() {
+            this.show = !this.show
         }
-    },
-    created() {
-        this.message = 'Component has been created'
-        console.log(this.message)
-        alert(this.message)
-    },
-    mounted(){
-      console.warn('component is now mounted')
-      alert('component is now mounted')
-      this.$refs.myElement.focus();
-    },
-    beforeUnmount(){
-      console.warn("Component is about to be destroyed");
-      alert("Component is about to be destroyed")
-    },
-    unmounted(){
-      console.warn('Component has been destroyed');
-      alert('Component has been destroyed');
     }
-   
+
 }
 </script>
+<style>
+.fade-enter-active, .fade-leave-active{
+  transition: 1s;
+}
+.fade-enter, .fade-leave-to{
+  opacity: 0;
+}
+</style>
