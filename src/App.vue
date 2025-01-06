@@ -1,21 +1,24 @@
 <template>
-  <div id="app">
+  
     <img alt="Vue logo" src="./assets/logo.png">
     
-    <nav>
-      <router-link to="/">Home</router-link>
-      <br/> <br />
-      <router-link to="/about">About</router-link>
-    </nav>
-    
-    <!-- This is where the routed components will be injected -->
-    <router-view></router-view>
-  </div>
+    <div>
+      <h1>{{ count }}</h1>
+      <button @click="increment">Increment</button>
+    </div>
 </template>
 
 <script>
-// You don't need to import HomeView and AboutView if you're routing them
+import {mapState} from 'vuex'
 export default {
-  name: 'App'
+  name: 'App',
+  computed:{
+    ...mapState(['count'])
+  },
+  methods:{
+    increment(){
+      this.$store.commit('increment')
+    }
+  }
 }
 </script>
