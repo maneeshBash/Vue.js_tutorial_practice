@@ -1,35 +1,34 @@
 <template>
 <img alt="Vue logo" src="./assets/logo.png">
 <br />
-<div>
-    <button @click="toggle">Toggle message</button>
-    <transition name="fade">
-        <p v-if="show">Hello World!</p>
-    </transition>
-</div>
+<h1>Item list</h1>
+<ul>
+    <li v-for="item in items" :key="item.id">{{ item.name }}</li>
+</ul>
+<p v-if="error">{{ error }}</p>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     name: 'App',
     data() {
         return {
-            show: true
+            items: [],
+            error: null
         };
     },
-    methods: {
-        toggle() {
-            this.show = !this.show
+   async mounted() {
+    try{
+        const response = await axios.get('https://api.example.com/items')
+            this.items = response.data;
+        
+        }catch(error) {
+            this.error = 'Failed to fetch items: ' + error.message;
+        
         }
+      
     }
 
 }
 </script>
-<style>
-.fade-enter-active, .fade-leave-active{
-  transition: 1s;
-}
-.fade-enter, .fade-leave-to{
-  opacity: 0;
-}
-</style>
