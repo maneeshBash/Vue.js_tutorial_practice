@@ -1,14 +1,17 @@
 <template>
 <img alt="Vue logo" src="./assets/logo.png">
-<TechnologyHome />
+<h1>Teleport Component</h1>
+<teleport to="#footer"><FooterPage/>
+</teleport>
+
 </template>
 
 <script>
-import TechnologyHome from './components/TechnologyHome.vue';
+import FooterPage from './components/FooterPage.vue';
 export default {
     name: 'App',
-    components:{
-        TechnologyHome
-    }
+  components:{
+    FooterPage
+  }
 }
 </script>
