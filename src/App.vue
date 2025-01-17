@@ -1,34 +1,41 @@
 <template>
-<img alt="Vue logo" src="./assets/logo.png">
-<br />
-<h1>Item list</h1>
-<ul>
-    <li v-for="item in items" :key="item.id">{{ item.name }}</li>
-</ul>
-<p v-if="error">{{ error }}</p>
+<SlotChildPage>
+    <template v-slot:header>
+        <h1>Hello Vue.js</h1>
+    </template>
+    <template v-slot:main>
+        <p>A Vue.js project</p>
+    </template>
+    <template v-slot:footer>
+        <button>View</button>
+    </template>
+</SlotChildPage>
+<SlotChildPage>
+    <template v-slot:header>
+        <h1>Hello Evan You</h1>
+    </template>
+    <template v-slot:main>
+        <p>Vue is actively maintained by a team of both full-time and volunteer members from all around the world, where Evan serves as the project lead.</p>
+    </template>
+    <template v-slot:footer>
+
+    </template>
+</SlotChildPage>
 </template>
 
 <script>
-import axios from 'axios';
+import SlotChildPage from './components/SlotChildPage.vue';
+
 export default {
     name: 'App',
-    data() {
-        return {
-            items: [],
-            error: null
-        };
-    },
-   async mounted() {
-    try{
-        const response = await axios.get('https://api.example.com/items')
-            this.items = response.data;
-        
-        }catch(error) {
-            this.error = 'Failed to fetch items: ' + error.message;
-        
-        }
-      
+    components: {
+        SlotChildPage
     }
-
 }
 </script>
+
+<style>
+h1 {
+    color: orange
+}
+</style>
