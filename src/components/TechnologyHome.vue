@@ -1,4 +1,5 @@
 <template>
+<h1>Dynamic Component</h1>
 <button @click="tab = 'JavaPage'">JavaPage</button>
 <button @click="tab = 'PHPPage'">PHPPage</button>
 <button @click="tab = 'PythonPage'">PythonPage</button>
